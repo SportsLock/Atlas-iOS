@@ -118,6 +118,8 @@ CGFloat const ATLMessageCellHorizontalMargin = 16.0f;
         [self configureBubbleViewForGIFContent];
     } else if ([messagePart.MIMEType isEqualToString:ATLMIMETypeLocation]) {
         [self configureBubbleViewForLocationContent];
+    } else {
+        self.bubbleView.hidden = YES;
     }
 }
 

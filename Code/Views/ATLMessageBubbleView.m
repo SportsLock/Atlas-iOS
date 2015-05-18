@@ -111,6 +111,7 @@ typedef NS_ENUM(NSInteger, ATLBubbleViewContentType) {
 
 - (void)prepareForReuse
 {
+    self.hidden = NO;
     self.bubbleImageView.image = nil;
     [self applyImageWidthConstraint:NO];
     [self setBubbleViewContentType:ATLBubbleViewContentTypeText];
