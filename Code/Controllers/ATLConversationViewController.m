@@ -362,7 +362,8 @@ static NSString *const ATLPushNotificationSoundName = @"layerbell.caf";
     } else {
         [cell updateWithSender:nil];
     }
-    if (message.isUnread && [[UIApplication sharedApplication] applicationState] == UIApplicationStateActive) {
+    if (message.isUnread && [[UIApplication sharedApplication] applicationState] == UIApplicationStateActive &&
+        self.navigationController.viewControllers.lastObject == self) {
         
         [message markAsRead:nil];
     }
