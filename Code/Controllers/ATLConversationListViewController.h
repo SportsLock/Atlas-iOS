@@ -19,7 +19,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <LayerKit/LayerKit.h>
+@import LayerKit;
 #import "ATLConversationTableViewCell.h"
 #import "ATLAvatarItem.h"
 
@@ -162,6 +162,13 @@
  */
 + (instancetype)conversationListViewControllerWithLayerClient:(LYRClient *)layerClient;
 
+/**
+ @abstract Initializes a new `ATLConversationListViewController` object with the given `LYRClient` object.
+ @param layerClient The `LYRClient` object from which conversations will be fetched for display.
+ @return An `LYRConversationListViewController` object initialized with the given `LYRClient` object.
+ */
+- (instancetype)initWithLayerClient:(LYRClient *)layerClient;
+
 ///-------------------------------------------------------
 /// @name Configuring Layer Client, Delegate & Data Source
 ///-------------------------------------------------------
@@ -172,6 +179,11 @@
  @raises NSInternalInconsistencyException Raised if the value is mutated after the receiver has been presented.
  */
 @property (nonatomic) LYRClient *layerClient;
+
+/**
+ @abstract The `LYRQueryController` object managing data displayed in the controller.
+ */
+@property (nonatomic, readonly) LYRQueryController *queryController;
 
 /**
  @abstract The object that is informed when specific events occur
@@ -237,8 +249,18 @@
 /**
  @abstract The controller used to display search results.
  */
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
 @property (nonatomic, readonly) UISearchDisplayController *searchController;
+#pragma GCC diagnostic pop
 
+/**
+ @abstract A boolean value that determines if the controller should show a search bar and search display controller.
+ @discussion When `YES`, a search bar with a search display controller is shown on top of the tableview.
+ Should be set before the controller is presented on screen.
+ @default `YES`.
+ */
+@property (nonatomic, assign) BOOL shouldDisplaySearchController;
 
 ///------------------------------
 /// @name Reloading Conversations
